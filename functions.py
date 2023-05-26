@@ -34,8 +34,8 @@ def text_cutter(text):
 def get_emoji(message):
     max = 0
     emoji = 0
-    if message.reactions is not None:
-        if message.reactions.reactions is not None:
+    if message.reactions:
+        if message.reactions.reactions:
             max = 0
             emoji = 0
             for i in message.reactions.reactions:
@@ -64,9 +64,9 @@ async def parse_chanel(app, chanel):
             continue
         # В зависимости от поста, текст может храниться либо в text, либо в caption. Вставляем ссылку в глагол,
         # если он есть, и возвращаем первое предложение с ссылкой на пост
-        if message.text is not None:
+        if message.text:
             with_link = input_link(chanel, message.id, text_cutter(message.text))
-        elif message.caption is not None:
+        elif message.caption:
             with_link = input_link(chanel, message.id, text_cutter(message.caption))
         else:
             continue
